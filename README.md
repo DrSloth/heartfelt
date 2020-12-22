@@ -14,3 +14,9 @@ More language features.
 
 Most of the features will be behind a cargo feature in order to keep binary sizes as small as
 possible and to only feature what you really need.
+
+# License 
+
+Heartfelt is distributed under the terms of the MIT license.
+
+See LICENSE for more details
