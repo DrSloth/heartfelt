@@ -1,0 +1,41 @@
+#NOTE - This currently is only a quick hack for easy config (DSL)
+
+#TODO - Heartfelt 0.1
+    #DONE - A simple Runtime
+    #DONE - Data
+        #DONE - String
+        #DONE - Int
+        #DONE - Bool
+        #DONE - Float
+        #DONE - Character
+    #DONE - Extensible with own instructions
+    #DONE - Labels
+    #DONE - Goto Instructions
+    Single threaded only
+    unsafe allowed but relatively safe
+
+#TODO - Heartfelt 0.1.1
+    #TODO - Clean Code a little
+    #TODO - A little bit of documentation
+
+#TODO - Heartfelt 0.2
+    #TODO - Variables
+    #TODO - Heartfelt Instructions
+    #TODO - Inlined instructions (inst)
+    #TODO - A little Optimisation
+    #TODO - Extensible types
+    #TODO - Better error handling
+    #TODO - Array
+    #TODO - Modules (?)
+    #TODO - Variable instructions (a way of saving instructions in variables (@inst) ?)
+        The instructions could be continuously looked up and then it could be on demand
+        that would be the easier solution (in general speed is nothing with high prio)
+        but the runtime would need to be changed (in general not the best idea) 
+    Single threaded only
+    deny_unsafe ? (if possible) (multiple runtimes?)
+
+#TODO - Heartfelt 1.0
+    #TODO - Macros
+    #TODO - Threading
+    #TODO - Optimisation
+    #TODO - Ready for release
