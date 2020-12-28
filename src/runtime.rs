@@ -190,6 +190,14 @@ impl Runtime {
         self.labels = labels;
     }
 
+    pub fn program_len(&self) -> usize {
+        self.program.len()
+    }
+
+    pub fn program_line_count(&self) -> usize {
+        self.program.len() + self.labels.len() + 1
+    }
+
     pub fn dump(&self) -> Result<String, std::fmt::Error> {
         let mut s = String::new();
         self.fmt_to(&mut s)?;
