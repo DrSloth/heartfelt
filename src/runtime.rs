@@ -314,18 +314,17 @@ impl Display for Data {
 }
 
 impl Data {
-    //TODO Implement "dump to programm logic here"
     fn dump(&self, f: &mut Formatter<'_>) -> FmtResult {
         use Data::*;
         match self {
-            Integer(i) => write!(f, "{}", i),
-            Float(fl) => write!(f, "{}", fl),
-            HString(s) => write!(f, "\"{}\"", s),
-            Text(t) => write!(f, "{}", t),
-            Bool(b) => write!(f, "{}", b),
-            Char(c) => write!(f, "{}", c),
+            Integer(i) => write!(f, "{} ", i),
+            Float(fl) => write!(f, "{} ", fl),
+            HString(s) => write!(f, "\"{}\" ", s),
+            Text(t) => write!(f, "{} ", t),
+            Bool(b) => write!(f, "{} ", b),
+            Char(c) => write!(f, "{} ", c),
             Array(v) => fmt_data_arr(v, f),
-            None => write!(f, "NONE"),
+            None => write!(f, "NONE "),
         }
     }
 }
