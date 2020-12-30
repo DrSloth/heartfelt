@@ -14,11 +14,11 @@
     Single threaded only
     unsafe allowed but relatively safe
 
-#TODO - Heartfelt 0.1.1
+#TODO - Heartfelt 0.2
     #TODO - Clean Code a little
     #TODO - A little bit of documentation
 
-#TODO - Heartfelt 0.2
+#TODO - Heartfelt 0.3
     #TODO - Variables
     #TODO - Heartfelt Instructions
     #TODO - Inlined instructions (inst)

@@ -96,6 +96,10 @@ impl Runtime {
         self.program.append(&mut instructions);
     }
 
+    pub fn add_instruction(&mut self, instructions: InstructionCall) {
+        self.program.push(instructions);
+    }
+
     pub fn prepend_instructions(&mut self, mut instructions: Program) {
         for lbl in self.labels.values_mut() {
             *lbl += instructions.len();
@@ -104,6 +108,14 @@ impl Runtime {
         std::mem::swap(&mut self.program, &mut instructions);
 
         self.program.append(&mut instructions);
+    }
+
+    pub fn prepend_instruction(&mut self, instruction: InstructionCall) {
+        for lbl in self.labels.values_mut() {
+            *lbl += 1;
+        }
+
+        self.program.insert(0, instruction);
     }
 
     pub fn clear_program(&mut self) {
@@ -190,6 +202,14 @@ impl Runtime {
         self.labels = labels;
     }
 
+    pub fn program_len(&self) -> usize {
+        self.program.len()
+    }
+
+    pub fn program_line_count(&self) -> usize {
+        self.program.len() + self.labels.len() + 1
+    }
+
     pub fn dump(&self) -> Result<String, std::fmt::Error> {
         let mut s = String::new();
         self.fmt_to(&mut s)?;
@@ -245,6 +265,20 @@ pub enum Instruction {
     RustInstruction(RustInstruction),
     HeartfeltInstruction(HeartfeltInstruction),
     Exit,
+}
+
+impl Instruction {
+    pub fn goto() -> Self {
+        Self::RustInstruction(Arc::new(crate::goto))
+    }
+
+    pub fn noop_inst() -> Self {
+        Self::RustInstruction(Arc::new(|_, _| Data::None))
+    }
+
+    pub fn noop_fn() -> Self {
+        Self::RustFunction(Arc::new(|_| Data::None))
+    }
 }
 
 #[derive(Clone)]
@@ -314,6 +348,7 @@ impl Display for Data {
 }
 
 impl Data {
+    //TODO Implement "dump to programm logic here"
     fn dump(&self, f: &mut Formatter<'_>) -> FmtResult {
         use Data::*;
         match self {
@@ -324,7 +359,7 @@ impl Data {
             Bool(b) => write!(f, "{} ", b),
             Char(c) => write!(f, "{} ", c),
             Array(v) => fmt_data_arr(v, f),
-            None => write!(f, "NONE "),
+            None => write!(f, "NONE"),
         }
     }
 }
