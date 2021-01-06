@@ -13,7 +13,7 @@ pub fn create_runtime(code: &str, mut instructions: InstructionMap) -> Result<Ru
 
     if !instructions.contains_key("goto") {
         instructions.insert(InstructionName::new("goto".to_string()),
-        Instruction::RustInstruction(FuncContainer::new(goto)));
+        Instruction::RustInstruction(goto));
     }
 
     parser.set_instructions(instructions);
@@ -44,14 +44,14 @@ pub fn goto(args: Args, runtime: &Runtime) -> Data {
 #[macro_export]
 macro_rules! rust_fn {
     ($fun:path) => {
-        $crate::Instruction::RustFunction(heartfelt::FuncContainer::new($fun))
+        $crate::Instruction::RustFunction($fun)
     };
 }
 
 #[macro_export]
 macro_rules! rust_inst {
     ($fun:path) => {
-        $crate::Instruction::RustInstruction(heartfelt::FuncContainer::new($fun))
+        $crate::Instruction::RustInstruction($fun)
     };
 }
 
