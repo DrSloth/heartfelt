@@ -19,19 +19,9 @@ description = "# Heartfelt\n\nA simple Rust library for creating DSLs (Domain Sp
 readme = "README.md"
 license = "MIT"
 repository = "https://github.com/DrSloth/heartfelt"
-[dependencies.ahash]
-version = "0.6.2"
-
-[dependencies.lazy_static]
-version = "1.4.0"
-
-[dependencies.regex]
-version = "1.4.2"
 
 [dependencies]
-regex-lexer = "0.1.0"
-regex = "1.4.2"
 ahash = "0.6.2"
 lazy_static = "1.4.0"
-[dependencies.regex-lexer]
-version = "0.1.0"
+regex-lexer = "0.1.0"
+regex = "1.4.2"
