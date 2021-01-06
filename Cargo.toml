@@ -13,7 +13,7 @@
 [package]
 edition = "2018"
 name = "heartfelt"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["hassan <hassanabujabir@gmail.com>"]
 description = "# Heartfelt\n\nA simple Rust library for creating DSLs (Domain Specific Languages)\n\n## Roadmap\nThis is still pretty much a work in progress. There will soon be an update with \nexamples and documentation.\n\nHeartfelt is still at a very early stage but a lot of features are planned.\nFor Instance: \nA compiler to bytecode.\nA vm for that bytecode.\nMore language features.\n\nMost of the features will be behind a cargo feature in order to keep binary sizes as small as\npossible and to only feature what you really need.\n\n# License \n\nHeartfelt is distributed under the terms of the MIT license.\n\nSee LICENSE for more details\n"
 readme = "README.md"

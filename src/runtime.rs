@@ -42,15 +42,23 @@ macro_rules! dump_program {
 
 pub type Args<'a> = &'a [Data];
 pub type ArgContainer = Vec<Data>;
-pub type RustFunction = FuncContainer<dyn Fn(Args) -> Data>;
-pub type RustInstruction = FuncContainer<dyn Fn(Args, &Runtime) -> Data>;
+pub type RustFunction = fn(Args) -> Data;
+pub type RustInstruction = fn(Args, &Runtime) -> Data;
 pub type HeartfeltInstruction = Vec<Instruction>;
-pub type FuncContainer<T> = Arc<T>;
+//pub type FuncContainer<T> = Arc<T>;
 pub type Program = Vec<InstructionCall>;
 pub type Labels = HashMap<String, usize, AHasherBuilder>;
 pub type InstructionMap = HashMap<InstructionName, Instruction, AHasherBuilder>;
 
 #[derive(Default)]
+/// A runtime executing heartfelt programs
+/// 
+/// This runtime unsafely implements Sync and Send. While thread safety is not given for the runtime from the
+/// rust perspective it is still sound from the heartfelt domain. The only way to break thread safety is
+/// to use the immutably borrowing def and set var functions from multiple threads or to use the run_unsafe function.
+/// The second one is allowed to break thread safety because it is marked as unsafe. The first reason should probably
+/// be marked as unsafe too as it violates rusts thread safety rules, but as the runtime is the bridge between 
+/// Rust and Heartfelt it is ok to not mark it as unsafe as it is still sound from the heartfelt perspective
 pub struct Runtime {
     program: Program,
     data_map: UnsafeCell<HashMap<String, Data, AHasherBuilder>>,
@@ -259,6 +267,9 @@ impl Runtime {
     }
 }
 
+unsafe impl Send for Runtime {}
+unsafe impl Sync for Runtime {}
+
 #[derive(Clone)]
 pub enum Instruction {
     RustFunction(RustFunction),
@@ -269,15 +280,15 @@ pub enum Instruction {
 
 impl Instruction {
     pub fn goto() -> Self {
-        Self::RustInstruction(Arc::new(crate::goto))
+        Self::RustInstruction(crate::goto)
     }
 
     pub fn noop_inst() -> Self {
-        Self::RustInstruction(Arc::new(|_, _| Data::None))
+        Self::RustInstruction(|_, _| Data::None)
     }
 
     pub fn noop_fn() -> Self {
-        Self::RustFunction(Arc::new(|_| Data::None))
+        Self::RustFunction(|_| Data::None)
     }
 }
 

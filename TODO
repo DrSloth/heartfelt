@@ -14,11 +14,11 @@
     Single threaded only
     unsafe allowed but relatively safe
 
-#TODO - Heartfelt 0.2
+#TODO 
     #TODO - Clean Code a little
     #TODO - A little bit of documentation
 
-#TODO - Heartfelt 0.3
+#TODO
     #TODO - Variables
     #TODO - Heartfelt Instructions
     #TODO - Inlined instructions (inst)
@@ -34,8 +34,8 @@
     Single threaded only
     deny_unsafe ? (if possible) (multiple runtimes?)
 
-#TODO - Heartfelt 1.0
+#TODO
     #TODO - Macros
     #TODO - Threading
     #TODO - Optimisation
-    #TODO - Ready for release
+    #TODO - Stable version
