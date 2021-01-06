@@ -36,6 +36,8 @@ macro_rules! dump_program {
             cur_lbl = lbl_iter.next();
         }
 
+        writeln!($w, "")?;
+
         Ok(())
     }};
 }
